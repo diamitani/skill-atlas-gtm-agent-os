@@ -1,26 +1,13 @@
 ---
-name: atlas-gtm-agent-os
+name: gtm-agent-os
 description: >
-  Atlas GTM Agent OS — ROSTR-powered multi-agent system for Clay, HubSpot, n8n,
-  Amplemarket, Asana, Factors.ai, and Avoma. Fixes Clay prospecting automation,
-  manages HubSpot lists and sequences, checks pipeline health, and operates the
-  full Atlas prospect automation workflow. Triggers on: any mention of Clay,
-  HubSpot, n8n, Amplemarket, Asana, prospect pipeline, enrichment, sequences,
-  outreach, AI Prospecting, or "fix my automation".
-allowed-tools:
-  - Bash
-  - Read
-  - Write
-  - Edit
-  - WebFetch
-  - WebSearch
-  - AskUserQuestion
+  Enterprise GTM Agent OS — ROSTR-powered multi-agent system for Clay, HubSpot, n8n, Amplemarket, Asana, Factors.ai, and Avoma. Fixes Clay prospecting automation, manages HubSpot lists and sequences, checks pipeline health, and operates the full Enterprise Platform prospect automation workflow. Triggers on: any mention of Clay, HubSpot, n8n, Amplemarket, Asana, prospect pipeline, enrichment, sequences, outreach, AI Prospecting, or "fix my automation". allowed-tools: - Bash - Read - Write - Edit - WebFetch - WebSearch - AskUserQuestion
 ---
 
-# Atlas GTM Agent OS
+# Enterprise GTM Agent OS
 
 **ROSTR Framework**: PAL + NPAO + ContextEngine  
-**Built for**: Patrick Diamitani, Atlas HXM GTM team
+**Built for**: Patrick Diamitani, Enterprise Platform GTM team
 
 ---
 
@@ -46,7 +33,7 @@ AMP_SEQ_EMAIL="ee5feb9a588e8d0048006343b5b91cd4d224cc37"
 
 # n8n
 N8N_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDM2NDZiMC1iYTU4LTQ2M2MtOGFmZC1jMjNlYmE4Y2EwMDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzc2MTg0MzM2fQ.UYyHtYvKxn1Y4HdhISoDsG-IqHT7nXH2I5h2CJVrp3Q"
-N8N_BASE="https://atlas-hxm.app.n8n.cloud"
+N8N_BASE="https://enterprise-platform.app.n8n.cloud"
 
 # Asana
 ASANA_PAT="YOUR_ASANA_PAT_HERE"
@@ -234,7 +221,7 @@ for p in custom[:20]:
 
 **Functional job**: Manage outreach sequences and contact enrollment.
 
-### Check Atlas sequences
+### Check Enterprise Platform sequences
 ```bash
 AMP_KEY="amp_b2c405baa8d1ab2a65aa"
 
@@ -262,12 +249,12 @@ curl -s -X POST "https://api.amplemarket.com/sequences/$SEQ_ID/contacts" \
 
 ## n8n Agent
 
-**Functional job**: Monitor and manage n8n workflows on atlas-hxm.app.n8n.cloud.
+**Functional job**: Monitor and manage n8n workflows on enterprise-platform.app.n8n.cloud.
 
 ### List all workflows
 ```bash
 N8N_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDM2NDZiMC1iYTU4LTQ2M2MtOGFmZC1jMjNlYmE4Y2EwMDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzc2MTg0MzM2fQ.UYyHtYvKxn1Y4HdhISoDsG-IqHT7nXH2I5h2CJVrp3Q"
-curl -s "https://atlas-hxm.app.n8n.cloud/api/v1/workflows" \
+curl -s "https://enterprise-platform.app.n8n.cloud/api/v1/workflows" \
   -H "X-N8N-API-KEY: $N8N_KEY" | python3 -c "
 import sys, json
 data = json.load(sys.stdin)
@@ -284,7 +271,7 @@ for w in wfs:
 ```bash
 N8N_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDM2NDZiMC1iYTU4LTQ2M2MtOGFmZC1jMjNlYmE4Y2EwMDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzc2MTg0MzM2fQ.UYyHtYvKxn1Y4HdhISoDsG-IqHT7nXH2I5h2CJVrp3Q"
 WF_ID="REPLACE_WITH_WORKFLOW_ID"
-curl -s "https://atlas-hxm.app.n8n.cloud/api/v1/executions?workflowId=$WF_ID&limit=5" \
+curl -s "https://enterprise-platform.app.n8n.cloud/api/v1/executions?workflowId=$WF_ID&limit=5" \
   -H "X-N8N-API-KEY: $N8N_KEY" | python3 -c "
 import sys, json
 execs = json.load(sys.stdin).get('data', [])
@@ -298,10 +285,10 @@ for e in execs:
 N8N_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDM2NDZiMC1iYTU4LTQ2M2MtOGFmZC1jMjNlYmE4Y2EwMDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzc2MTg0MzM2fQ.UYyHtYvKxn1Y4HdhISoDsG-IqHT7nXH2I5h2CJVrp3Q"
 WF_ID="REPLACE"
 # Activate:
-curl -s -X PATCH "https://atlas-hxm.app.n8n.cloud/api/v1/workflows/$WF_ID/activate" \
+curl -s -X PATCH "https://enterprise-platform.app.n8n.cloud/api/v1/workflows/$WF_ID/activate" \
   -H "X-N8N-API-KEY: $N8N_KEY"
 # Deactivate:
-curl -s -X PATCH "https://atlas-hxm.app.n8n.cloud/api/v1/workflows/$WF_ID/deactivate" \
+curl -s -X PATCH "https://enterprise-platform.app.n8n.cloud/api/v1/workflows/$WF_ID/deactivate" \
   -H "X-N8N-API-KEY: $N8N_KEY"
 ```
 
@@ -378,7 +365,7 @@ done
 N8N_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZDM2NDZiMC1iYTU4LTQ2M2MtOGFmZC1jMjNlYmE4Y2EwMDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzc2MTg0MzM2fQ.UYyHtYvKxn1Y4HdhISoDsG-IqHT7nXH2I5h2CJVrp3Q"
 echo ""
 echo "=== N8N WORKFLOWS ==="
-curl -s "https://atlas-hxm.app.n8n.cloud/api/v1/workflows" \
+curl -s "https://enterprise-platform.app.n8n.cloud/api/v1/workflows" \
   -H "X-N8N-API-KEY: $N8N_KEY" | python3 -c "
 import sys, json
 wfs = json.load(sys.stdin).get('data', [])
