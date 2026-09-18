@@ -1,8 +1,8 @@
-# skill-atlas-gtm-agent-os
+# skill-gtm-agent-os
 
 ![Category](https://img.shields.io/badge/category-GTM%20%26%20Sales-orange) ![Status](https://img.shields.io/badge/status-active-green) ![Author](https://img.shields.io/badge/author-Patrick%20Diamitani-purple)
 
-The GTM Agent Operating System for Atlas HXM — a global Employer of Record company. This skill is the central brain for all GTM automation: prospecting, outreach, CRM hygiene, pipeline management, and revenue operations. Think of it as the control panel that routes and orchestrates every sales and marketing workflow.
+The GTM Agent Operating System for Enterprise Platform — a global Employer of Record company. This skill is the central brain for all GTM automation: prospecting, outreach, CRM hygiene, pipeline management, and revenue operations. Think of it as the control panel that routes and orchestrates every sales and marketing workflow.
 
 ## What It Does
 - Orchestrates end-to-end GTM workflows across HubSpot, Clay, Asana, and Amplemarket
@@ -13,7 +13,7 @@ The GTM Agent Operating System for Atlas HXM — a global Employer of Record com
 
 ## How to Use
 ```
-/atlas-gtm-agent-os
+/gtm-agent-os
 ```
 Or say: "run GTM workflows", "check pipeline health", "sync CRM data"
 
